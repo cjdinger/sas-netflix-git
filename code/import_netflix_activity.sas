@@ -1,4 +1,13 @@
-filename viewing "C:\Users\sascrh\OneDrive - SAS\UserCommunications\SQL_Intro\NetflixData\*.csv";
+%if %symexist(_SASPROGRAMFILE) %then %do;
+  %let codepath =
+    %sysfunc(substr(%sysfunc(dequote(&_SASPROGRAMFILE)), 1,
+    %sysfunc(findc(%sysfunc(dequote(&_SASPROGRAMFILE)), %str(\), -255 )))); 
+%end;
+%else %do;
+  %put ERROR: Cannot determine code file location;
+%end;
+
+filename viewing "&codepath.../NetflixData/*.csv";
 
 data viewing;
  length title $ 300 date 8 
