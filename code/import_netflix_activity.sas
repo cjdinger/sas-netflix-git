@@ -1,11 +1,8 @@
-/* Adding a comment because I should */
 %if %symexist(_SASPROGRAMFILE) %then %do;
   %let codepath =
     %sysfunc(substr(%sysfunc(dequote(&_SASPROGRAMFILE)), 1,
-    %sysfunc(findc(%sysfunc(dequote(&_SASPROGRAMFILE)), %str(\), -255 )))); 
-%end;
-%else %do;
-  %put ERROR: Cannot determine code file location;
+    %sysfunc(findc(%sysfunc(dequote(&_SASPROGRAMFILE)), %str(/\), -255 )))); 
+    %put Base code path is &codepath.;
 %end;
 
 filename viewing "&codepath.../NetflixData/*.csv";
