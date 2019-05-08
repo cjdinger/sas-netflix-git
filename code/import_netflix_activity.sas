@@ -5,6 +5,8 @@
     %put Base code path is &codepath.;
 %end;
 
+/* Adding a comment for the good people on the Webinar */
+
 filename viewing "&codepath.../NetflixData/*.csv";
 
 data viewing;
