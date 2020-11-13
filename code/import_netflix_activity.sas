@@ -5,8 +5,6 @@
     %put Base code path is &codepath.;
 %end;
 
-/* Adding a comment for the good people on the Webinar */
-
 filename viewing "&codepath.../NetflixData/*.csv";
 
 data viewing;
@@ -16,7 +14,7 @@ data viewing;
  informat date mmddyy.;
  format date date9.;
  infile viewing dlm=',' dsd filename=in firstobs=2;
- profile=scan(in,-1,'\');
+ profile=scan(in,-1,'\/');
  input title date;
  array part $ 60 part1-part4;
  do i = 1 to 4;
@@ -29,4 +27,5 @@ data viewing;
  drop i;
  maintitle = part{1};
  episode = part{3};
+ if Title ^= "Title";
 run;
